@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap');
+@import "tailwindcss";
 :root{
   --bg1:#f2f4f7;
   --bg2:#e7ebf0;
@@ -30,4 +30,59 @@ body{
     0 8px 24px rgba(0,0,0,0.12),
     inset 0 1px 0 rgba(255,255,255,0.8);
   border:1px solid rgba(255,255,255,0.7);
+}
+
+@keyframes ringPulse1 {
+  0%,100% {
+    transform: scale(1);
+    box-shadow: 0 0 18px rgba(34,211,238,0.6), 0 0 40px rgba(34,211,238,0.35);
+    opacity: .9;
+  }
+  50% {
+    transform: scale(1.12);
+    box-shadow: 0 0 28px rgba(34,211,238,1), 0 0 70px rgba(34,211,238,.8);
+    opacity: 1;
+  }
+}
+
+@keyframes ringPulse2 {
+  0%,100% {
+    transform: scale(1);
+    box-shadow: 0 0 18px rgba(217,70,239,0.6), 0 0 40px rgba(217,70,239,0.35);
+    opacity: .85;
+  }
+  50% {
+    transform: scale(1.13);
+    box-shadow: 0 0 28px rgba(217,70,239,1), 0 0 70px rgba(217,70,239,.8);
+    opacity: 1;
+  }
+}
+
+@keyframes ringPulse3 {
+  0%,100% {
+    transform: scale(1);
+    box-shadow: 0 0 18px rgba(52,211,153,0.6), 0 0 40px rgba(52,211,153,0.35);
+    opacity: .85;
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 28px rgba(52,211,153,1), 0 0 70px rgba(52,211,153,.8);
+    opacity: 1;
+  }
+}
+
+@keyframes btnPulse {
+  0%,100% {
+    transform: scale(1);
+    box-shadow:
+      0 10px 25px rgba(0,0,0,.15),
+      inset 0 2px 0 rgba(255,255,255,.9);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow:
+      0 14px 38px rgba(0,0,0,.25),
+      0 0 25px rgba(255,255,255,.9),
+      inset 0 2px 0 rgba(255,255,255,1);
+  }
 }
