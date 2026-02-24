@@ -1,8 +1,19 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MainLayout from "../layouts/MainLayout.astro";
+
+import NavbarSection from "../components/sections/NavbarSection.jsx";
+import CenterSection from "../components/sections/CenterSection.jsx";
+import MenuSection from "../components/sections/MenuSection.jsx";
+import BottomSection from "../components/sections/BottomSection.jsx";
 ---
 
-<Layout>
-	<h1>Hello World</h1>
-	<p>This is a basic Astro site.</p>
-</Layout>
+<MainLayout>
+  <main class="h-[200vh] flex flex-col">
+
+    <NavbarSection client:load />
+    <CenterSection />
+    <MenuSection />
+    <BottomSection />
+
+  </main>
+</MainLayout>
