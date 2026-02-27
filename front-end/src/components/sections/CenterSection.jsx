@@ -24,7 +24,7 @@ export default function CenterSection() {
   }, []);
 
   return (
-    <section className="h-[48vh] flex flex-col items-center justify-center px-6 py-6 md:py-10 relative overflow-hidden shrink-0">
+    <section className="h-[65vh] flex flex-col items-center justify-center px-6 py-6 md:py-10 relative overflow-hidden shrink-0">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-cyan-200/10 blur-[60px] md:blur-[100px] rounded-full -z-10" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] md:w-[250px] h-[180px] md:h-[250px] bg-fuchsia-200/10 blur-[50px] md:blur-[80px] rounded-full -z-10" />

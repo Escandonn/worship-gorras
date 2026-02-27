@@ -34,23 +34,23 @@ export default function MenuSection() {
   };
 
   return (
-    <section className="relative h-[40vh] md:h-[20vh] flex items-center justify-center overflow-hidden bg-[#f4f4f4] px-4">
+    <section className="relative h-[30vh] md:h-[25vh] flex items-center justify-center overflow-hidden bg-[#f4f4f4] px-4">
 
       {/* LADO IZQUIERDO: FLUJO EN "V" COMPACTO */}
-      <div className="absolute left-2 md:left-[6%] lg:left-[10%] flex items-baseline gap-2 md:gap-3 z-0 pointer-events-none">
-        <span className="font-['Playfair_Display'] text-[20px] md:text-[32px] lg:text-[40px] font-black text-black -translate-y-4 md:-translate-y-8">
+      <div className="absolute left-2 md:left-[6%] lg:left-[10%] flex items-baseline gap-2 md:gap-3 z-0 pointer-events-none mt-8 md:mt-16">
+        <span className="font-['Playfair_Display'] text-[20px] md:text-[36px] lg:text-[44px] font-black text-black -translate-y-4 md:-translate-y-10">
           Con
         </span>
-        <span className="font-['Playfair_Display'] text-[18px] md:text-[24px] lg:text-[30px] font-bold text-black/30">
+        <span className="font-['Playfair_Display'] text-[18px] md:text-[26px] lg:text-[32px] font-bold text-black/30">
           un
         </span>
-        <span className="font-['Playfair_Display'] text-[24px] md:text-[38px] lg:text-[48px] font-black text-black translate-y-4 md:translate-y-8 ml-1 md:ml-4">
+        <span className="font-['Playfair_Display'] text-[24px] md:text-[42px] lg:text-[52px] font-black text-black translate-y-4 md:translate-y-10 ml-1 md:ml-4">
           triángulo
         </span>
       </div>
 
       {/* NÚCLEO CENTRAL */}
-      <div className="relative flex items-center justify-center [perspective:1000px] [transform-style:preserve-3d] z-10 scale-75 md:scale-[0.85]">
+      <div className="relative flex items-center justify-center [perspective:1000px] [transform-style:preserve-3d] z-10 scale-75 md:scale-[0.9] mt-8 md:mt-16">
         {cards.map((c, i) => {
           const pos = positions[(i + shift) % 3];
           return (
@@ -64,29 +64,30 @@ export default function MenuSection() {
           );
         })}
 
-        <div className="absolute z-[5] w-[140px] h-[140px] md:w-[160px] md:h-[160px] rounded-full border-[2px] border-cyan-300/40 animate-[ringPulse1_3.8s_ease-in-out_infinite]" />
-        <div className="absolute z-[5] w-[100px] h-[100px] md:w-[120px] md:h-[120px] rounded-full border-[2px] border-fuchsia-300/40 animate-[ringPulse2_3.2s_ease-in-out_infinite]" />
+        <div className="absolute z-[5] w-[140px] h-[140px] md:w-[170px] md:h-[170px] rounded-full border-[2px] border-cyan-300/40 animate-[ringPulse1_3.8s_ease-in-out_infinite]" />
+        <div className="absolute z-[5] w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full border-[2px] border-fuchsia-300/40 animate-[ringPulse2_3.2s_ease-in-out_infinite]" />
 
         <button
           onClick={handleNext}
-          className="relative z-30 px-6 py-2.5 md:px-[30px] md:py-[10px] rounded-full border border-white/90 bg-gradient-to-b from-white to-[#e9edf2] font-['Playfair_Display'] font-bold tracking-[0.2em] text-[12px] md:text-[13px] text-[#111] shadow-xl active:scale-95 transition-transform"
+          className="relative z-30 px-6 py-2.5 md:px-[34px] md:py-[12px] rounded-full border border-white/90 bg-gradient-to-b from-white to-[#e9edf2] font-['Playfair_Display'] font-bold tracking-[0.2em] text-[12px] md:text-[14px] text-[#111] shadow-xl active:scale-95 transition-transform"
         >
           WORSHIP
         </button>
       </div>
 
       {/* LADO DERECHO: FLUJO EN "V" COMPACTO */}
-      <div className="absolute right-2 md:right-[6%] lg:right-[10%] flex items-baseline gap-2 md:gap-3 z-0 pointer-events-none">
-        <span className="font-['Playfair_Display'] text-[24px] md:text-[38px] lg:text-[48px] font-black text-black translate-y-4 md:translate-y-8 mr-1 md:mr-4">
+      <div className="absolute right-2 md:right-[6%] lg:right-[10%] flex items-baseline gap-2 md:gap-3 z-0 pointer-events-none mt-8 md:mt-16">
+        <span className="font-['Playfair_Display'] text-[24px] md:text-[42px] lg:text-[52px] font-black text-black translate-y-4 md:translate-y-10 mr-1 md:mr-4">
           en
         </span>
-        <span className="font-['Playfair_Display'] text-[18px] md:text-[24px] lg:text-[30px] font-bold text-black/30">
+        <span className="font-['Playfair_Display'] text-[18px] md:text-[26px] lg:text-[32px] font-bold text-black/30">
           la
         </span>
-        <span className="font-['Playfair_Display'] text-[20px] md:text-[32px] lg:text-[40px] font-black text-black -translate-y-4 md:-translate-y-8">
+        <span className="font-['Playfair_Display'] text-[20px] md:text-[36px] lg:text-[44px] font-black text-black -translate-y-4 md:-translate-y-10">
           frente
         </span>
       </div>
+
 
     </section>
   );
