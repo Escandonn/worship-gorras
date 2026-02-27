@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 
 export default function MenuSection() {
+  // --- CONFIGURACIÓN DE TAMAÑO / HEIGHT CONFIG ---
+  const HEIGHT_MOBILE = "h-[25vh]"; // Altura en móvil (más alta para aprovechar espacio)
+  const HEIGHT_DESKTOP = "md:h-[25vh]"; // Altura en PC
+  // -----------------------------------------------
+
   const [shift, setShift] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -12,9 +17,9 @@ export default function MenuSection() {
   }, []);
 
   const positions = [
-    { width: "65px", height: "120px", transform: `translate3d(-110px, -110px, -200px) rotateZ(-20deg) rotateX(15deg)`, borderRadius: "20px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[0.5px] scale-90" },
-    { width: "75px", height: "100px", transform: `translate3d(0px, -90px, 50px) rotateZ(0deg) rotateX(15deg)`, borderRadius: "15px", border: "1px solid rgba(255,255,255,.6)", boxShadow: "0 20px 40px rgba(0,0,0,.35)", opacity: "opacity-100 scale-110 brightness-110" },
-    { width: "65px", height: "120px", transform: `translate3d(110px, -110px, -200px) rotateZ(20deg) rotateX(15deg)`, borderRadius: "24px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[0.5px] scale-90" },
+    { width: "75px", height: "135px", transform: `translate3d(-120px, -110px, -200px) rotateZ(-20deg) rotateX(15deg)`, borderRadius: "20px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[0.5px] scale-90" },
+    { width: "85px", height: "115px", transform: `translate3d(0px, -90px, 50px) rotateZ(0deg) rotateX(15deg)`, borderRadius: "15px", border: "1px solid rgba(255,255,255,.6)", boxShadow: "0 20px 40px rgba(0,0,0,.35)", opacity: "opacity-100 scale-110 brightness-110" },
+    { width: "75px", height: "135px", transform: `translate3d(120px, -110px, -200px) rotateZ(20deg) rotateX(15deg)`, borderRadius: "24px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[0.5px] scale-90" },
   ];
 
   const cards = [
@@ -34,23 +39,32 @@ export default function MenuSection() {
   };
 
   return (
-    <section className="relative h-[30vh] md:h-[25vh] flex items-center justify-center overflow-hidden bg-[#f4f4f4] px-4">
+    <section className={`relative ${HEIGHT_MOBILE} ${HEIGHT_DESKTOP} flex items-center justify-center overflow-hidden bg-[#f4f4f4] px-4`}>
 
       {/* LADO IZQUIERDO: FLUJO EN "V" COMPACTO */}
-      <div className="absolute left-2 md:left-[6%] lg:left-[10%] flex items-baseline gap-2 md:gap-3 z-0 pointer-events-none mt-8 md:mt-16">
-        <span className="font-['Playfair_Display'] text-[20px] md:text-[36px] lg:text-[44px] font-black text-black -translate-y-4 md:-translate-y-10">
+      <div className="absolute left-2 md:left-[6%] lg:left-[10%] flex items-baseline gap-2 md:gap-3 z-0 pointer-events-none mt-12 md:mt-20">
+        <span
+          className="font-['Playfair_Display'] text-[20px] md:text-[40px] lg:text-[52px] font-black animate-word-focus -translate-y-4 md:-translate-y-12"
+          style={{ animationDelay: "0s" }}
+        >
           Con
         </span>
-        <span className="font-['Playfair_Display'] text-[18px] md:text-[26px] lg:text-[32px] font-bold text-black/30">
+        <span
+          className="font-['Playfair_Display'] text-[18px] md:text-[28px] lg:text-[38px] font-bold animate-word-focus"
+          style={{ animationDelay: "0.8s" }}
+        >
           un
         </span>
-        <span className="font-['Playfair_Display'] text-[24px] md:text-[42px] lg:text-[52px] font-black text-black translate-y-4 md:translate-y-10 ml-1 md:ml-4">
+        <span
+          className="font-['Playfair_Display'] text-[24px] md:text-[48px] lg:text-[64px] font-black animate-word-focus translate-y-4 md:translate-y-12 ml-1 md:ml-4"
+          style={{ animationDelay: "1.6s" }}
+        >
           triángulo
         </span>
       </div>
 
       {/* NÚCLEO CENTRAL */}
-      <div className="relative flex items-center justify-center [perspective:1000px] [transform-style:preserve-3d] z-10 scale-75 md:scale-[0.9] mt-8 md:mt-16">
+      <div className="relative flex items-center justify-center [perspective:1000px] [transform-style:preserve-3d] z-10 scale-[0.85] md:scale-[0.95] mt-12 md:mt-20">
         {cards.map((c, i) => {
           const pos = positions[(i + shift) % 3];
           return (
@@ -76,14 +90,23 @@ export default function MenuSection() {
       </div>
 
       {/* LADO DERECHO: FLUJO EN "V" COMPACTO */}
-      <div className="absolute right-2 md:right-[6%] lg:right-[10%] flex items-baseline gap-2 md:gap-3 z-0 pointer-events-none mt-8 md:mt-16">
-        <span className="font-['Playfair_Display'] text-[24px] md:text-[42px] lg:text-[52px] font-black text-black translate-y-4 md:translate-y-10 mr-1 md:mr-4">
+      <div className="absolute right-2 md:right-[6%] lg:right-[10%] flex items-baseline gap-2 md:gap-3 z-0 pointer-events-none mt-12 md:mt-20">
+        <span
+          className="font-['Playfair_Display'] text-[24px] md:text-[48px] lg:text-[64px] font-black animate-word-focus translate-y-4 md:translate-y-12 mr-1 md:mr-4"
+          style={{ animationDelay: "2.4s" }}
+        >
           en
         </span>
-        <span className="font-['Playfair_Display'] text-[18px] md:text-[26px] lg:text-[32px] font-bold text-black/30">
+        <span
+          className="font-['Playfair_Display'] text-[18px] md:text-[28px] lg:text-[38px] font-bold animate-word-focus"
+          style={{ animationDelay: "3.2s" }}
+        >
           la
         </span>
-        <span className="font-['Playfair_Display'] text-[20px] md:text-[36px] lg:text-[44px] font-black text-black -translate-y-4 md:-translate-y-10">
+        <span
+          className="font-['Playfair_Display'] text-[20px] md:text-[40px] lg:text-[52px] font-black animate-word-focus -translate-y-4 md:-translate-y-12"
+          style={{ animationDelay: "4.0s" }}
+        >
           frente
         </span>
       </div>

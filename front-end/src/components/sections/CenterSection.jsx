@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 
 export default function CenterSection() {
+  // --- CONFIGURACIÓN DE TAMAÑO / HEIGHT CONFIG ---
+  const HEIGHT_MOBILE = "h-[65vh]"; // Altura en móvil
+  const HEIGHT_DESKTOP = "md:h-[65vh]"; // Altura en PC (reducida para dar más aire)
+  // -----------------------------------------------
+
   const [selection, setSelection] = useState({
     id: 2, // Default to Adan
     img: "/assets/adan.png",
@@ -24,30 +29,30 @@ export default function CenterSection() {
   }, []);
 
   return (
-    <section className="h-[65vh] flex flex-col items-center justify-center px-6 py-6 md:py-10 relative overflow-hidden shrink-0">
+    <section className={`${HEIGHT_MOBILE} ${HEIGHT_DESKTOP} flex flex-col items-center justify-center px-6 py-6 md:py-10 relative overflow-hidden shrink-0`}>
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-cyan-200/10 blur-[60px] md:blur-[100px] rounded-full -z-10" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] md:w-[250px] h-[180px] md:h-[250px] bg-fuchsia-200/10 blur-[50px] md:blur-[80px] rounded-full -z-10" />
 
       {/* Main Container */}
       <div
-        className={`max-w-4xl w-full flex flex-row items-center gap-6 md:gap-12 transition-all duration-500 ease-out 
+        className={`max-w-6xl w-full flex flex-row items-center gap-6 md:gap-16 lg:gap-24 transition-all duration-500 ease-out 
         ${isAnimating ? "opacity-0 scale-95 blur-sm" : "opacity-100 scale-100 blur-0"}`}
       >
 
         {/* Visual Content */}
-        <div className="relative group w-1/3 md:w-1/2 flex justify-center">
+        <div className="relative group w-1/3 md:w-1/2 flex justify-center py-4 md:py-16 min-h-[150px] md:min-h-[400px]">
           {/* Glass Background for Image */}
           <div className="absolute inset-x-0 inset-y-0 bg-white/40 backdrop-blur-xl rounded-[24px] md:rounded-[40px] border border-white/60 shadow-[0_12px_24px_-8px_rgba(0,0,0,0.1)] -z-10 transform -rotate-2" />
 
           <img
             src={selection.img}
             alt={selection.title}
-            className="w-[120px] sm:w-[180px] md:w-[260px] h-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.2)] transition-transform duration-700 group-hover:scale-105"
+            className="w-[120px] sm:w-[220px] md:w-[320px] lg:w-[380px] h-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.2)] transition-transform duration-700 group-hover:scale-105"
           />
 
           {/* Badge */}
-          <div className="absolute bottom-2 right-2 md:bottom-6 md:right-6 bg-black/90 text-white px-2 py-1 md:px-5 md:py-2 rounded-lg md:rounded-2xl backdrop-blur-md shadow-2xl">
+          <div className="absolute bottom-2 right-2 md:bottom-10 md:right-10 bg-black/90 text-white px-2 py-1 md:px-5 md:py-2 rounded-lg md:rounded-2xl backdrop-blur-md shadow-2xl">
             <span className="font-['Playfair_Display'] text-[8px] md:text-sm tracking-widest uppercase font-bold text-cyan-300">New Edition</span>
           </div>
         </div>
@@ -58,10 +63,10 @@ export default function CenterSection() {
             <h3 className="text-cyan-600/60 font-medium tracking-[0.2em] md:tracking-[0.3em] uppercase text-[8px] md:text-sm">
               Marketing Excellence
             </h3>
-            <h2 className="font-['Playfair_Display'] text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-[#1a1a1a] leading-tight">
+            <h2 className="font-['Playfair_Display'] text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-[#1a1a1a] leading-tight">
               {selection.title}
             </h2>
-            <p className="font-['Playfair_Display'] text-sm md:text-2xl text-black/40 italic font-medium">
+            <p className="font-['Playfair_Display'] text-sm sm:text-xl md:text-3xl text-black/40 italic font-medium">
               {selection.subtitle}
             </p>
           </div>
