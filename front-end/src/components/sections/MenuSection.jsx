@@ -2,8 +2,18 @@ import { useState, useEffect } from "react";
 
 export default function MenuSection() {
   // --- CONFIGURACIÓN DE TAMAÑO / HEIGHT CONFIG ---
-  const HEIGHT_MOBILE = "h-[25vh]"; // Altura en móvil (más alta para aprovechar espacio)
-  const HEIGHT_DESKTOP = "md:h-[25vh]"; // Altura en PC
+  const HEIGHT_MOBILE = "h-[25vh]";
+  const HEIGHT_DESKTOP = "md:h-[25vh]";
+
+  // --- CONFIGURACIÓN DE TEXTO / TEXT CONFIG ---
+  // Tamaños para "Con", "en", "frente", "triángulo", "un", "la"
+  const TXT_L_MOB = "text-[25px]"; // Grande móvil
+  const TXT_M_MOB = "text-[20px]"; // Mediano móvil
+  const TXT_S_MOB = "text-[18px]"; // Pequeño móvil
+
+  const TXT_L_PC = "md:text-[38px] lg:text-[44px]"; // Grande PC (Más pequeño)
+  const TXT_M_PC = "md:text-[22px] lg:text-[28px]"; // Mediano PC
+  const TXT_S_PC = "md:text-[16px] lg:text-[22px]"; // Pequeño PC
   // -----------------------------------------------
 
   const [shift, setShift] = useState(0);
@@ -44,19 +54,19 @@ export default function MenuSection() {
       {/* LADO IZQUIERDO: FLUJO EN "V" COMPACTO */}
       <div className="absolute left-2 md:left-[6%] lg:left-[10%] flex items-baseline gap-2 md:gap-3 z-0 pointer-events-none mt-12 md:mt-20">
         <span
-          className="font-['Playfair_Display'] text-[20px] md:text-[40px] lg:text-[52px] font-black animate-word-focus -translate-y-4 md:-translate-y-12"
+          className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus -translate-y-4 md:-translate-y-12`}
           style={{ animationDelay: "0s" }}
         >
           Con
         </span>
         <span
-          className="font-['Playfair_Display'] text-[18px] md:text-[28px] lg:text-[38px] font-bold animate-word-focus"
+          className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus`}
           style={{ animationDelay: "0.8s" }}
         >
           un
         </span>
         <span
-          className="font-['Playfair_Display'] text-[24px] md:text-[48px] lg:text-[64px] font-black animate-word-focus translate-y-4 md:translate-y-12 ml-1 md:ml-4"
+          className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus translate-y-4 md:translate-y-12 ml-1 md:ml-4`}
           style={{ animationDelay: "1.6s" }}
         >
           triángulo
@@ -92,19 +102,19 @@ export default function MenuSection() {
       {/* LADO DERECHO: FLUJO EN "V" COMPACTO */}
       <div className="absolute right-2 md:right-[6%] lg:right-[10%] flex items-baseline gap-2 md:gap-3 z-0 pointer-events-none mt-12 md:mt-20">
         <span
-          className="font-['Playfair_Display'] text-[24px] md:text-[48px] lg:text-[64px] font-black animate-word-focus translate-y-4 md:translate-y-12 mr-1 md:mr-4"
+          className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus translate-y-4 md:translate-y-12 mr-1 md:mr-4`}
           style={{ animationDelay: "2.4s" }}
         >
           en
         </span>
         <span
-          className="font-['Playfair_Display'] text-[18px] md:text-[28px] lg:text-[38px] font-bold animate-word-focus"
+          className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus`}
           style={{ animationDelay: "3.2s" }}
         >
           la
         </span>
         <span
-          className="font-['Playfair_Display'] text-[20px] md:text-[40px] lg:text-[52px] font-black animate-word-focus -translate-y-4 md:-translate-y-12"
+          className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus -translate-y-4 md:-translate-y-12`}
           style={{ animationDelay: "4.0s" }}
         >
           frente
