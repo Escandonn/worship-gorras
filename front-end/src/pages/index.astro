@@ -2,18 +2,18 @@
 import MainLayout from "../layouts/MainLayout.astro";
 
 import NavbarSection from "../components/sections/NavbarSection.jsx";
-import CenterSection from "../components/sections/CenterSection.jsx";
-import MenuSection from "../components/sections/MenuSection.jsx";
+import HeroSection from "../components/sections/HeroSection.jsx";
+import StyleSection from "../components/sections/StyleSection.jsx";
+import AboutSection from "../components/sections/AboutSection.jsx";
 import BottomSection from "../components/sections/BottomSection.jsx";
 ---
 
 <MainLayout>
-  <main class="h-[200vh] flex flex-col">
-
+  <main class="flex flex-col scroll-smooth">
     <NavbarSection client:load />
-    <CenterSection client:load />
-    <MenuSection client:load />
+    <HeroSection client:load />
+    <StyleSection client:load />
+    <AboutSection client:load />
     <BottomSection />
-
   </main>
 </MainLayout>

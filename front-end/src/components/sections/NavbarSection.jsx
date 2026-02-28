@@ -1,24 +1,26 @@
 export default function NavbarSection() {
-  const links = ["Inicio", "Colección", "Estilo", "Nosotros"];
+  const links = [
+    { name: "Inicio", href: "#inicio" },
+    { name: "Colección", href: "#inicio" },
+    { name: "Estilo", href: "#estilo" },
+    { name: "Nosotros", href: "#nosotros" }
+  ];
 
   return (
-    <section className="h-[10vh] min-h-[80px] px-[3.2vw]">
+    <header className="fixed top-0 left-0 w-full z-[100] px-[3.2vw]">
       <nav
         className="
         relative
-        h-full flex items-center justify-between
+        h-[10vh] min-h-[80px] flex items-center justify-between
         rounded-b-[18px]
         backdrop-blur-[18px]
         bg-white/55
         shadow-[0_4px_12px_rgba(0,0,0,0.08),0_8px_24px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.85)]
-
-        before:absolute before:inset-0
-        before:bg-gradient-to-b before:from-white/70 before:to-transparent
-        before:opacity-60 before:pointer-events-none
+        mt-0
       "
       >
         {/* BRAND */}
-        <div className="flex items-center gap-[12px] sm:gap-[15px]">
+        <div className="flex items-center gap-[12px] sm:gap-[15px] pl-4 sm:pl-8">
           <div
             className="
             w-[52px] h-[52px] sm:w-[64px] sm:h-[64px]
@@ -56,10 +58,10 @@ export default function NavbarSection() {
           mr-[1vw] lg:mr-[2vw]
         "
         >
-          {links.map((item) => (
+          {links.map((link) => (
             <a
-              key={item}
-              href="#"
+              key={link.name}
+              href={link.href}
               className="
                 relative overflow-hidden
                 font-['Playfair_Display']
@@ -99,11 +101,11 @@ export default function NavbarSection() {
                 ]
               "
             >
-              {item}
+              {link.name}
             </a>
           ))}
         </div>
       </nav>
-    </section>
+    </header>
   );
 }
