@@ -115,7 +115,7 @@ export default function HeroSection() {
 
             {/* PARTE INFERIOR: PANEL DE COLECCIÓN */}
             <div className={`${PANEL_HEIGHT} w-full flex items-center justify-center relative`}>
-                <div className="relative w-[95%] md:w-[94%] h-full max-w-[1500px] mx-auto bg-linear-to-br from-fuchsia-600/70 via-white/5 to-cyan-400/80 backdrop-blur-3xl rounded-[3rem] border border-white/70 shadow-[0_40px_120px_rgba(217,70,239,0.4),0_0_100px_rgba(34,211,238,0.5)] flex items-center justify-center">
+                <div className="relative w-[95%] md:w-[94%] h-full max-w-[1500px] mx-auto bg-linear-to-br from-fuchsia-500/30 via-white/20 to-cyan-400/40 backdrop-blur-3xl rounded-[3rem] border border-white/70 shadow-[0_30px_100px_rgba(217,70,239,0.2),0_40px_100px_rgba(34,211,238,0.2)] flex items-center justify-center">
 
                     {/* LADO IZQUIERDO */}
                     <div className="absolute left-6 md:left-[8%] lg:left-[10%] flex items-baseline gap-2 md:gap-4 z-0 pointer-events-none opacity-40">

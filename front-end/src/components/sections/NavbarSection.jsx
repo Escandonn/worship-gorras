@@ -1,9 +1,9 @@
 export default function NavbarSection() {
   const links = [
     { name: "Inicio", href: "#inicio" },
-    { name: "Colección", href: "#inicio" },
     { name: "Estilo", href: "#estilo" },
-    { name: "Nosotros", href: "#nosotros" }
+    { name: "Nosotros", href: "#nosotros" },
+    { name: "Contacto", href: "#contacto" }
   ];
 
   return (
