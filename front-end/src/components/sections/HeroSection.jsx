@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useStore } from "@nanostores/react";
+import { $capSelection, cards } from "../../store/capStore";
 
 export default function HeroSection() {
     // --- CONFIGURACIÓN DE TAMAÑO / HEIGHT CONFIG ---
@@ -7,13 +9,7 @@ export default function HeroSection() {
     const PANEL_HEIGHT = "h-[28vh] md:h-[22vh]";
     // -----------------------------------------------
 
-    const [selection, setSelection] = useState({
-        id: 2,
-        img: "/assets/adan.png",
-        title: "Legacy Black",
-        subtitle: "Esencia Atemporal",
-        desc: "Sarga de algodón peinado de alta densidad con un acabado mate profundo. El estándar de oro en elegancia urbana."
-    });
+    const selection = useStore($capSelection);
 
     const [shift, setShift] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
@@ -57,7 +53,7 @@ export default function HeroSection() {
 
             setIsAnimating(true);
             setTimeout(() => {
-                setSelection(frontCard);
+                $capSelection.set(frontCard);
                 setIsAnimating(false);
             }, 400);
 
@@ -72,6 +68,20 @@ export default function HeroSection() {
     const TXT_M_PC = "md:text-[22px] lg:text-[28px]";
     const TXT_S_PC = "md:text-[16px] lg:text-[22px]";
 
+    const [scrollPos, setScrollPos] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollPos(window.scrollY);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Fade out as StyleSection image takes over
+    const heroOpacity = Math.max(1 - (scrollPos / 300), 0);
+    const heroTranslate = (scrollPos / 5);
+
     return (
         <section id="inicio" className={`${HEIGHT_FULL} flex flex-col items-center bg-[#f8f9fa] overflow-hidden pt-[80px]`}>
 
@@ -84,7 +94,10 @@ export default function HeroSection() {
           ${isAnimating ? "opacity-0 scale-95 blur-md" : "opacity-100 scale-100 blur-0"}`}>
 
                     <div className="relative group w-full md:w-1/2 flex flex-col items-center justify-center">
-                        <div className="relative w-full max-w-[280px] md:max-w-none aspect-square md:min-h-[350px] flex items-center justify-center p-6">
+                        <div
+                            className="relative w-full max-w-[280px] md:max-w-none aspect-square md:min-h-[350px] flex items-center justify-center p-6 transition-all duration-300 ease-out"
+                            style={{ opacity: heroOpacity, transform: `translateY(${heroTranslate}px)` }}
+                        >
                             {/* Glass Card Hero con efecto flotante */}
                             <div className="absolute inset-0 bg-white/40 backdrop-blur-3xl rounded-[40px] md:rounded-[60px] border border-white/60 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] -z-10 animate-[float_6s_ease-in-out_infinite]" />
                             <img
