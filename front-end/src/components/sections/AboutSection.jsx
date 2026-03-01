@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 export default function AboutSection() {
     const [isVisible, setIsVisible] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [touchStart, setTouchStart] = useState(null);
+    const [touchEnd, setTouchEnd] = useState(null);
     const sectionRef = useRef(null);
 
     const cardsContent = [
@@ -56,10 +58,39 @@ export default function AboutSection() {
     useEffect(() => {
         if (!isVisible) return;
         const interval = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % cardsContent.length);
-        }, 5000);
+            handleNext();
+        }, 6000);
         return () => clearInterval(interval);
     }, [isVisible, cardsContent.length]);
+
+    const handleNext = () => {
+        setCurrentIndex((prev) => (prev + 1) % cardsContent.length);
+    };
+
+    const handlePrev = () => {
+        setCurrentIndex((prev) => (prev - 1 + cardsContent.length) % cardsContent.length);
+    };
+
+    // Touch handlers for swipe
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const onTouchMove = (e) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+        if (isLeftSwipe) handleNext();
+        if (isRightSwipe) handlePrev();
+    };
 
     const activeCard = cardsContent[currentIndex];
 
@@ -67,6 +98,9 @@ export default function AboutSection() {
         <section
             id="nosotros"
             ref={sectionRef}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
             className="h-screen flex items-start md:items-center justify-center bg-[#f8f9fa] overflow-hidden px-6 pt-24 md:pt-0 relative"
         >
             {/* GEOMETRIC BACKGROUND SYNCED WITH CARD */}
@@ -87,12 +121,13 @@ export default function AboutSection() {
                             <path
                                 d={`M500,${100 + i * 40} L${950 - i * 40},${850 - i * 40} L${50 + i * 40},${850 - i * 40} Z`}
                                 fill="none"
-                                stroke={currentIndex === i ? activeCard.accent : "rgba(0,0,0,0.03)"}
-                                strokeWidth={currentIndex === i ? "3" : "1"}
+                                stroke={currentIndex === i ? activeCard.accent : "rgba(0,0,0,0.02)"}
+                                strokeWidth={currentIndex === i ? "2" : "1"}
                                 className={`transition-all duration-1000 ${isVisible ? "animate-draw" : ""}`}
                                 style={{
-                                    opacity: currentIndex === i ? 0.9 : 0.15,
-                                    filter: currentIndex === i ? `drop-shadow(0 0 15px ${activeCard.accent})` : 'none'
+                                    opacity: currentIndex === i ? 0.8 : 0.1,
+                                    filter: currentIndex === i ? `drop-shadow(0 0 10px ${activeCard.accent})` : 'none',
+                                    willChange: 'transform, opacity'
                                 }}
                             />
                             {/* Extra Glowing Lines for framing */}
@@ -115,7 +150,7 @@ export default function AboutSection() {
             </div>
 
             {/* 3D CARD STACK */}
-            <div className="relative z-10 w-full max-w-5xl h-[75vh] md:h-[70vh] flex items-center justify-center perspective-distant">
+            <div className="relative z-10 w-full max-w-4xl h-[75vh] md:h-[65vh] flex items-center justify-center perspective-distant">
                 {cardsContent.map((card, index) => {
                     const isCenter = index === currentIndex;
                     const isNext = index === (currentIndex + 1) % cardsContent.length;
@@ -142,8 +177,8 @@ export default function AboutSection() {
                     return (
                         <div
                             key={card.id}
-                            className={`absolute inset-0 flex flex-col items-center justify-center text-center bg-white/30 backdrop-blur-[40px] rounded-[3rem] md:rounded-[4rem] border border-white/60 p-8 md:p-16 transition-all duration-1000 ease-out card-stack-item overflow-hidden ${isCenter ? (card.color === 'cyan' ? 'card-shadow-cyan' : (card.color === 'sand' ? 'card-shadow-sand' : 'card-shadow-fuchsia')) : ''}`}
-                            style={{ transform, zIndex, opacity }}
+                            className={`absolute inset-0 flex flex-col items-center justify-center text-center bg-white/40 backdrop-blur-3xl rounded-[3rem] md:rounded-[3.5rem] border border-white/60 p-8 md:p-14 transition-all duration-700 ease-out card-stack-item overflow-hidden ${isCenter ? (card.color === 'cyan' ? 'card-shadow-cyan' : (card.color === 'sand' ? 'card-shadow-sand' : 'card-shadow-fuchsia')) : ''}`}
+                            style={{ transform, zIndex, opacity, willChange: 'transform, opacity' }}
                         >
                             {/* CORNER GLOWING BRACKETS - DOUBLE LINE FOR TECH SENSATION */}
                             <div className={`absolute top-0 left-0 w-28 h-28 transition-all duration-1000 delay-500 ${isCenter ? 'opacity-100 translate-x-2 translate-y-2' : 'opacity-0 scale-150'}`}>
@@ -188,7 +223,7 @@ export default function AboutSection() {
                                     <span className="text-white font-bold tracking-[0.5em] uppercase text-[9px] md:text-xs">{card.badge}</span>
                                 </div>
 
-                                <h2 className="font-['Playfair_Display'] text-5xl md:text-7xl lg:text-8xl font-black text-[#111] leading-[0.8] md:leading-[0.85] tracking-tighter mb-4 md:mb-8">
+                                <h2 className="font-['Playfair_Display'] text-5xl md:text-6xl lg:text-7xl font-black text-[#111] leading-[0.8] md:leading-[0.85] tracking-tighter mb-4 md:mb-6">
                                     {card.title} <br />
                                     <span className={`text-transparent bg-clip-text bg-linear-to-r ${card.color === 'sand' ? 'from-[#8B735B] via-[#C2A385] to-[#8B735B]' : 'from-cyan-600 via-fuchsia-500 to-cyan-500'} ${isCenter ? 'animate-text-shimmer' : ''}`}>
                                         {card.highlight}
@@ -197,7 +232,7 @@ export default function AboutSection() {
 
                                 <div className={`h-[1px] bg-linear-to-r from-transparent via-[#111]/20 to-transparent mb-6 md:mb-10 transition-all duration-1000 ${isCenter ? 'w-32 md:w-64 opacity-100' : 'w-0 opacity-0'}`} />
 
-                                <p className="text-base md:text-xl lg:text-2xl text-[#111]/90 max-w-3xl font-bold leading-tight md:leading-relaxed px-2 md:px-4">
+                                <p className="text-base md:text-lg lg:text-xl text-[#111]/90 max-w-3xl font-bold leading-tight md:leading-relaxed px-2 md:px-4">
                                     {card.desc}
                                 </p>
 
@@ -214,6 +249,39 @@ export default function AboutSection() {
                         </div>
                     );
                 })}
+
+                {/* MOBILE SWIPE INDICATOR / NAVIGATION ARROWS */}
+                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 md:hidden pointer-events-none">
+                    <button
+                        onClick={handlePrev}
+                        className="p-3 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-[#111] pointer-events-auto active:scale-90 transition-transform"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button
+                        onClick={handleNext}
+                        className="p-3 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-[#111] pointer-events-auto active:scale-90 transition-transform"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+
+                {/* SWIPE HINT */}
+                <div className={`absolute -bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 md:hidden transition-all duration-1000 ${isVisible ? 'opacity-40' : 'opacity-0'}`}>
+                    <div className="flex gap-4 animate-bounce">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                        </svg>
+                        <span className="text-[9px] font-black tracking-[0.3em] uppercase">Desliza</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
+                </div>
             </div>
 
             {/* NAVIGATION DOTS */}

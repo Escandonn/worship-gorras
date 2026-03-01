@@ -67,14 +67,14 @@ export default function StyleSection() {
 
             {/* MAIN CONTENT CONTAINER */}
             <div
-                className={`relative z-10 w-full max-w-7xl flex flex-col items-center justify-center transition-all duration-700 ease-out`}
+                className={`relative z-10 w-full max-w-5xl flex flex-col items-center justify-center transition-all duration-700 ease-out`}
                 style={{ transform: `translateY(${textTranslateY}px)`, opacity: opacity }}
             >
 
                 {/* FLOATING PRODUCT IMAGE (Traveling from top) */}
                 <div className="relative mb-8 md:mb-12 group perspective-1000 transform-3d">
                     <div
-                        className={`relative w-[280px] sm:w-[350px] md:w-[450px] lg:w-[500px] aspect-square flex items-center justify-center p-8 transition-all duration-300 ease-out transform-3d`}
+                        className={`relative w-[280px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-square flex items-center justify-center p-6 transition-all duration-300 ease-out transform-3d`}
                         style={{
                             transform: `translateY(${translateY}vh) scale(${scale}) rotateX(${rotateX}deg) rotateZ(${rotateZ}deg)`,
                             opacity: opacity
@@ -98,7 +98,7 @@ export default function StyleSection() {
                         Aesthetic Excellence
                     </h3>
 
-                    <h2 className={`font-['Playfair_Display'] text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-[#111] leading-[0.85] tracking-tighter transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                    <h2 className={`font-['Playfair_Display'] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#111] leading-[0.85] tracking-tighter transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         EL ARTE DEL <br />
                         <span className="relative inline-block text-transparent bg-clip-text bg-linear-to-r from-cyan-500 via-fuchsia-500 to-cyan-500 animate-text-shimmer">
                             DETALLE
@@ -107,7 +107,7 @@ export default function StyleSection() {
 
                     <div className={`h-[2px] w-24 md:w-48 mx-auto bg-linear-to-r from-transparent via-fuchsia-500 to-transparent rounded-full shadow-[0_0_20px_rgba(217,70,239,0.6)] transition-all duration-1000 delay-800 ${isVisible ? 'w-48 opacity-100' : 'w-0 opacity-0'}`} />
 
-                    <p className={`text-[#111]/70 text-base md:text-xl lg:text-2xl font-medium max-w-2xl mx-auto leading-relaxed transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+                    <p className={`text-[#111]/70 text-base md:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                         Fusionamos la elegancia del renacimiento con la rebeldía del streetwear moderno. Cada puntada es una oda a la perfección visual y táctil.
                     </p>
 
