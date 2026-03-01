@@ -5,7 +5,7 @@ import { $capSelection, cards } from "../../store/capStore";
 export default function HeroSection() {
     // --- CONFIGURACIÓN DE TAMAÑO / HEIGHT CONFIG ---
     const HEIGHT_FULL = "h-screen";
-    const HERO_HEIGHT = "h-[68vh] md:h-[65vh]";
+    const HERO_HEIGHT = "h-[63vh] md:h-[65vh]";
     const PANEL_HEIGHT = "h-[22vh] md:h-[20vh]";
     // -----------------------------------------------
 
