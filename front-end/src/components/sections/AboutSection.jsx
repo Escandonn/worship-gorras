@@ -230,7 +230,7 @@ export default function AboutSection() {
                                     </span>
                                 </h2>
 
-                                <div className={`h-[1px] bg-linear-to-r from-transparent via-[#111]/20 to-transparent mb-6 md:mb-10 transition-all duration-1000 ${isCenter ? 'w-32 md:w-64 opacity-100' : 'w-0 opacity-0'}`} />
+                                <div className={`h-px bg-linear-to-r from-transparent via-[#111]/20 to-transparent mb-6 md:mb-10 transition-all duration-1000 ${isCenter ? 'w-32 md:w-64 opacity-100' : 'w-0 opacity-0'}`} />
 
                                 <p className="text-base md:text-lg lg:text-xl text-[#111]/90 max-w-3xl font-bold leading-tight md:leading-relaxed px-2 md:px-4">
                                     {card.desc}

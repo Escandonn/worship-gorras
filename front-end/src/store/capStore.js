@@ -15,7 +15,10 @@ export const cards = [
         styleTitle: "Technical Precision",
         styleHeadline: "MAESTRÍA EN",
         styleHighlight: "VENTILACIÓN",
-        styleDesc: "Ingeniería de vanguardia aplicada a cada panel. Buscamos el equilibrio perfecto entre peso y resistencia estructural."
+        styleDesc: "Ingeniería de vanguardia aplicada a cada panel. Buscamos el equilibrio perfecto entre peso y resistencia estructural.",
+        story: "Nacida para la velocidad. La Stability Pro utiliza polímeros de alta densidad que mantienen la forma bajo presión extrema.",
+        callToAction: "ADQUIRIR PRECISIÓN",
+        rotation3D: { x: 15, y: -25 }
     },
     {
         id: 2,
@@ -31,7 +34,10 @@ export const cards = [
         styleTitle: "Premium Heritage",
         styleHeadline: "EL CULTO AL",
         styleHighlight: "LUJO",
-        styleDesc: "Tejidos nobles seleccionados a mano. Cada gorra cuenta una historia de exclusividad y elegancia sin esfuerzo."
+        styleDesc: "Tejidos nobles seleccionados a mano. Cada gorra cuenta una historia de exclusividad y elegancia sin esfuerzo.",
+        story: "El estándar de oro del streetwear. La Legacy Black es un tributo a la sastrería clásica, reimaginada para la elite moderna.",
+        callToAction: "RECLAMAR LEGADO",
+        rotation3D: { x: -10, y: 15 }
     },
     {
         id: 3,
@@ -47,7 +53,10 @@ export const cards = [
         styleTitle: "Future Vision",
         styleHeadline: "DISEÑO DEL",
         styleHighlight: "MAÑANA",
-        styleDesc: "Materiales que desafían la realidad. Una estética cibernética diseñada para destacar en el paisaje nocturno de la ciudad."
+        styleDesc: "Materiales que desafían la realidad. Una estética cibernética diseñada para destacar en el paisaje nocturno de la ciudad.",
+        story: "Más allá del horizonte. La Zenith Silver refleja el espectro urbano con micro-prismas que cobran vida bajo las luces de neón.",
+        callToAction: "FORJAR EL FUTURO",
+        rotation3D: { x: 20, y: 30 }
     }
 ];
 

@@ -1,0 +1,43 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import CollectionNavbar from "../components/collection/CollectionNavbar.jsx";
+import CapFeatureSection from "../components/collection/CapFeatureSection.jsx";
+import { cards } from "../store/capStore";
+import BottomSection from "../components/sections/BottomSection.jsx";
+---
+
+<MainLayout>
+    <main
+        class="bg-[#0a0a0a] selection:bg-white selection:text-black min-h-screen"
+    >
+        <CollectionNavbar client:load />
+
+        <div class="relative w-full overflow-x-hidden">
+            {
+                cards.map((cap, index) => (
+                    <CapFeatureSection cap={cap} index={index} client:visible />
+                ))
+            }
+        </div>
+
+        <BottomSection client:visible />
+    </main>
+</MainLayout>
+
+<style>
+    /* Refined scroll behavior */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Additional animations if needed */
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+</style>
