@@ -40,9 +40,9 @@ export default function HeroSection() {
     ];
 
     const positions = [
-        { width: "70px", height: "125px", transform: `translate3d(-100px, -60px, -200px) rotateZ(-20deg) rotateX(15deg)`, borderRadius: "18px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[1px] scale-90" },
-        { width: "80px", height: "110px", transform: `translate3d(0px, -50px, 50px) rotateZ(0deg) rotateX(15deg)`, borderRadius: "14px", border: "1px solid rgba(255,255,255,.7)", boxShadow: "0 20px 40px rgba(0,0,0,.3), 0 0 20px rgba(34,211,238,0.2)", opacity: "opacity-100 scale-110 brightness-110" },
-        { width: "70px", height: "125px", transform: `translate3d(100px, -60px, -200px) rotateZ(20deg) rotateX(15deg)`, borderRadius: "22px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[1px] scale-90" },
+        { width: "70px", height: "125px", transform: `translate3d(-100px, -110px, -200px) rotateZ(-20deg) rotateX(15deg)`, borderRadius: "18px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[1px] scale-90" },
+        { width: "80px", height: "110px", transform: `translate3d(0px, -100px, 50px) rotateZ(0deg) rotateX(15deg)`, borderRadius: "14px", border: "1px solid rgba(255,255,255,.7)", boxShadow: "0 20px 40px rgba(0,0,0,.3), 0 0 20px rgba(34,211,238,0.2)", opacity: "opacity-100 scale-110 brightness-110" },
+        { width: "70px", height: "125px", transform: `translate3d(100px, -110px, -200px) rotateZ(20deg) rotateX(15deg)`, borderRadius: "22px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[1px] scale-90" },
     ];
 
     const handleNext = () => {
