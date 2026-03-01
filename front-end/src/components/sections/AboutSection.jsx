@@ -14,8 +14,8 @@ export default function AboutSection() {
             title: "NACIÓ DEL",
             highlight: "CORAZÓN",
             desc: "Worship no es solo diseño, es un origen. Cada línea y cada ángulo nace de un amor incondicional por la excelencia. Somos la elite que entiende el lujo en la pasión.",
-            color: "cyan",
-            accent: "#22d3ee"
+            color: "fuchsia",
+            accent: "#d946ef"
         },
         {
             id: 2,
