@@ -18,7 +18,7 @@ export default function HeroSection() {
     const cards = [
         {
             id: 1,
-            img: "/assets/img.png",
+            img: "/assets/im2.png",
             title: "Stability Pro",
             subtitle: "Rendimiento Avanzado",
             desc: "Estructura reforzada con paneles de micromalla para una ventilación superior y un ajuste ergonómico incomparable."
@@ -114,7 +114,7 @@ export default function HeroSection() {
                             <h2 className="font-['Playfair_Display'] text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#111] leading-[0.9] tracking-tighter">
                                 {selection.title}
                             </h2>
-                            <p className="font-['Playfair_Display'] text-base md:text-2xl lg:text-3xl text-fuchsia-500/80 italic font-semibold">
+                            <p className="font-['Playfair_Display'] text-base md:text-2xl lg:text-3xl text-slate-400/80 italic font-semibold">
                                 {selection.subtitle}
                             </p>
                         </div>
@@ -128,7 +128,7 @@ export default function HeroSection() {
 
             {/* PARTE INFERIOR: PANEL DE COLECCIÓN */}
             <div className={`${PANEL_HEIGHT} w-full flex items-center justify-center relative`}>
-                <div className="relative w-[95%] md:w-[94%] h-full max-w-[1500px] mx-auto bg-linear-to-br from-fuchsia-500/30 via-white/20 to-cyan-400/40 backdrop-blur-3xl rounded-[3rem] border border-white/70 shadow-[0_30px_100px_rgba(217,70,239,0.2),0_40px_100px_rgba(34,211,238,0.2)] flex items-center justify-center">
+                <div className="relative w-[95%] md:w-[94%] h-full max-w-[1500px] mx-auto bg-linear-to-br from-slate-300/30 via-white/20 to-cyan-400/30 backdrop-blur-3xl rounded-[3rem] border border-white/70 shadow-[0_30px_100px_rgba(148,163,184,0.1),0_40px_100px_rgba(34,211,238,0.2)] flex items-center justify-center">
 
                     {/* LADO IZQUIERDO */}
                     <div className="absolute left-6 md:left-[8%] lg:left-[10%] flex items-baseline gap-2 md:gap-4 z-0 pointer-events-none opacity-40">
@@ -154,7 +154,7 @@ export default function HeroSection() {
 
                         {/* Anillos de luz dinámica */}
                         <div className="absolute z-5 w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-full border border-cyan-400/30 animate-[ringPulse1_4s_infinite]" />
-                        <div className="absolute z-5 w-[120px] h-[120px] md:w-[150px] md:h-[150px] rounded-full border border-fuchsia-400/20 animate-[ringPulse2_3s_infinite]" />
+                        <div className="absolute z-5 w-[120px] h-[120px] md:w-[150px] md:h-[150px] rounded-full border border-slate-300/20 animate-[ringPulse2_3s_infinite]" />
 
                         <button
                             onClick={handleNext}
@@ -167,9 +167,9 @@ export default function HeroSection() {
 
                     {/* LADO DERECHO */}
                     <div className="absolute right-6 md:right-[8%] lg:right-[10%] flex items-baseline gap-2 md:gap-4 z-0 pointer-events-none opacity-40">
-                        <span className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus translate-y-4 md:translate-y-12 mr-1 md:mr-4 text-[#111]`}>en</span>
-                        <span className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus text-[#111]`}>la</span>
-                        <span className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus -translate-y-4 md:-translate-y-12 text-[#111]`}>frente</span>
+                        <span className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus translate-y-4 md:translate-y-12 mr-1 md:mr-4 text-[#111]`}>in</span>
+                        <span className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus text-[#111]`}>the</span>
+                        <span className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus -translate-y-4 md:-translate-y-12 text-[#111]`}>faces</span>
                     </div>
                 </div>
             </div>

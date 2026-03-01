@@ -35,6 +35,18 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
+.card-shadow-cyan {
+  box-shadow: 0 0 50px rgba(34, 211, 238, 0.4);
+}
+
+.card-shadow-fuchsia {
+  box-shadow: 0 0 50px rgba(217, 70, 239, 0.4);
+}
+
+.card-shadow-sand {
+  box-shadow: 0 0 50px rgba(194, 163, 133, 0.4);
+}
+
 @keyframes ringPulse1 {
 
   0%,

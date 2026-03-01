@@ -50,14 +50,14 @@ export default function StyleSection() {
     const rotateZ = (1 - scrollProgress) * -10;
     const opacity = Math.min(scrollProgress * 3, 1);
 
-    // Text parallax
-    const textTranslateY = (1 - scrollProgress) * 50;
+    // Text parallax: reciprocity movement (text goes up as image descends)
+    const textTranslateY = (1 - scrollProgress) * 180;
 
     return (
         <section
             id="estilo"
             ref={sectionRef}
-            className="h-[140vh] flex items-center justify-center bg-[#f8f9fa] overflow-hidden px-6 relative"
+            className="h-[115vh] md:h-[140vh] flex items-center justify-center bg-[#f8f9fa] overflow-hidden px-6 relative"
         >
             {/* BACKGROUND ELEMENTS */}
             <div className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
