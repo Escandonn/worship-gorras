@@ -1,9 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function BottomSection() {
+  const [isClient, setIsClient] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [scrollScale, setScrollScale] = useState(1);
   const sectionRef = useRef(null);
+
+  useEffect(() => {
+    setIsClient(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,7 +38,7 @@ export default function BottomSection() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!sectionRef.current) return;
+      if (!sectionRef.current || typeof window === 'undefined') return;
       const rect = sectionRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
@@ -50,40 +60,44 @@ export default function BottomSection() {
       ref={sectionRef}
       className="h-screen flex items-center justify-center bg-[#0a0a0a] overflow-hidden px-6 relative"
     >
-      {/* ATMOSPHERIC BACKGROUND */}
+      {/* ATMOSPHERIC BACKGROUND (MESH GRADIENT STYLE) */}
       <div className={`absolute inset-0 z-0 transition-opacity duration-[2000ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-950/20 blur-[180px] rounded-full" />
-        <div className="absolute top-[40%] right-[10%] w-[400px] h-[400px] bg-fuchsia-950/10 blur-[150px] rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-cyan-900/20 blur-[200px] rounded-full animate-[pulse_10s_infinite]" />
+        <div className="absolute top-[20%] left-[10%] w-[600px] h-[600px] bg-fuchsia-900/15 blur-[180px] rounded-full animate-[pulse_8s_infinite] delay-1000" />
+        <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-cyan-800/10 blur-[150px] rounded-full animate-[pulse_12s_infinite] delay-500" />
       </div>
 
       {/* TRIPART BACKGROUND BRANDING WITH DISPERSIVE SCROLL MOTION */}
       <div
         className={`absolute inset-0 z-0 flex items-center justify-center transition-opacity duration-1000 ${isVisible ? 'opacity-5' : 'opacity-0'}`}
       >
-        <div className="flex gap-2 md:gap-8 items-baseline select-none">
+        <div className="flex flex-col md:flex-row gap-0 md:gap-8 items-center md:items-baseline select-none py-10">
           {/* PART 1: WO */}
           <div
-            className="font-['Playfair_Display'] text-[12vh] md:text-[35vh] lg:text-[45vh] font-black text-white leading-none tracking-tighter"
+            className="font-['Playfair_Display'] text-[22vh] md:text-[35vh] lg:text-[45vh] font-black text-white leading-[0.85] tracking-tighter"
             style={{
-              transform: `scale(${scrollScale * 1.1}) translateX(${(1 - scrollScale) * 200}px) translateY(${(1 - scrollScale) * 100}px) rotate(-10deg)`
+              transform: `scale(${scrollScale * 1.15}) translateX(${!isClient || isMobile ? 0 : (1 - scrollScale) * 200}px) translateY(${!isClient || isMobile ? (scrollScale - 1) * 60 : (1 - scrollScale) * 100}px) rotate(${!isClient || isMobile ? 0 : -10}deg)`,
+              textShadow: isClient && isMobile ? '0 0 40px rgba(0,0,0,0.5)' : 'none'
             }}
           >
             WO
           </div>
           {/* PART 2: RSH */}
           <div
-            className="font-['Playfair_Display'] text-[12vh] md:text-[35vh] lg:text-[45vh] font-black text-white leading-none tracking-tighter"
+            className="font-['Playfair_Display'] text-[22vh] md:text-[35vh] lg:text-[45vh] font-black text-white leading-[0.85] tracking-tighter"
             style={{
-              transform: `scale(${scrollScale}) translateY(${(scrollScale - 1) * -50}px)`
+              transform: `scale(${scrollScale}) translateY(${(scrollScale - 1) * -40}px) rotate(0deg)`,
+              textShadow: isClient && isMobile ? '0 0 40px rgba(0,0,0,0.5)' : 'none'
             }}
           >
             RSH
           </div>
           {/* PART 3: IP */}
           <div
-            className="font-['Playfair_Display'] text-[12vh] md:text-[35vh] lg:text-[45vh] font-black text-white leading-none tracking-tighter"
+            className="font-['Playfair_Display'] text-[22vh] md:text-[35vh] lg:text-[45vh] font-black text-white leading-[0.85] tracking-tighter"
             style={{
-              transform: `scale(${scrollScale * 0.95}) translateX(${(scrollScale - 1) * 200}px) translateY(${(scrollScale - 1) * 100}px) rotate(10deg)`
+              transform: `scale(${scrollScale * 0.98}) translateX(${!isClient || isMobile ? 0 : (scrollScale - 1) * 200}px) translateY(${!isClient || isMobile ? (1 - scrollScale) * 60 : (scrollScale - 1) * 100}px) rotate(${!isClient || isMobile ? 0 : 10}deg)`,
+              textShadow: isClient && isMobile ? '0 0 40px rgba(0,0,0,0.5)' : 'none'
             }}
           >
             IP
@@ -99,12 +113,20 @@ export default function BottomSection() {
         </div>
 
         {/* MAIN HEADLINE (THE MONOLITH) */}
-        <h2 className={`font-['Playfair_Display'] text-6xl md:text-9xl font-black text-white text-glow-white leading-none tracking-tighter mb-12 transition-all duration-1000 delay-500 ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
+        <h2 className={`font-['Playfair_Display'] text-7xl md:text-9xl font-black text-white text-glow-white leading-none tracking-tighter mb-16 transition-all duration-1000 delay-500 ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
           ÚNETE AL <br />
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-white/80 to-white/40">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-white/90 to-white/30 drop-shadow-2xl">
             CULTO
           </span>
         </h2>
+
+        {/* MAIN CALL TO ACTION: COMPRAR */}
+        <div className={`mb-20 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+          <button className="group relative px-16 py-6 rounded-full bg-white text-[#0a0a0a] font-black tracking-[0.4em] text-sm md:text-base overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-[0_0_50px_rgba(255,255,255,0.3)] active:scale-95">
+            <div className="absolute inset-0 bg-linear-to-r from-transparent via-cyan-400/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            <span className="relative z-10">COMPRAR DISEÑO</span>
+          </button>
+        </div>
 
         {/* INTERACTIVE BUTTONS */}
         <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-center justify-center w-full px-4 mb-20">

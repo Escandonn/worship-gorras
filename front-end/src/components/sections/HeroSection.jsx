@@ -5,8 +5,8 @@ import { $capSelection, cards } from "../../store/capStore";
 export default function HeroSection() {
     // --- CONFIGURACIÓN DE TAMAÑO / HEIGHT CONFIG ---
     const HEIGHT_FULL = "h-screen";
-    const HERO_HEIGHT = "h-[55vh] md:h-[65vh]";
-    const PANEL_HEIGHT = "h-[25vh] md:h-[20vh]";
+    const HERO_HEIGHT = "h-[58vh] md:h-[65vh]";
+    const PANEL_HEIGHT = "h-[22vh] md:h-[20vh]";
     // -----------------------------------------------
 
     const selection = useStore($capSelection);
@@ -40,9 +40,9 @@ export default function HeroSection() {
     ];
 
     const positions = [
-        { width: "70px", height: "125px", transform: `translate3d(-100px, -100px, -200px) rotateZ(-20deg) rotateX(15deg)`, borderRadius: "18px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[1px] scale-90" },
-        { width: "80px", height: "110px", transform: `translate3d(0px, -80px, 50px) rotateZ(0deg) rotateX(15deg)`, borderRadius: "14px", border: "1px solid rgba(255,255,255,.7)", boxShadow: "0 20px 40px rgba(0,0,0,.3), 0 0 20px rgba(34,211,238,0.2)", opacity: "opacity-100 scale-110 brightness-110" },
-        { width: "70px", height: "125px", transform: `translate3d(100px, -100px, -200px) rotateZ(20deg) rotateX(15deg)`, borderRadius: "22px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[1px] scale-90" },
+        { width: "70px", height: "125px", transform: `translate3d(-100px, -60px, -200px) rotateZ(-20deg) rotateX(15deg)`, borderRadius: "18px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[1px] scale-90" },
+        { width: "80px", height: "110px", transform: `translate3d(0px, -50px, 50px) rotateZ(0deg) rotateX(15deg)`, borderRadius: "14px", border: "1px solid rgba(255,255,255,.7)", boxShadow: "0 20px 40px rgba(0,0,0,.3), 0 0 20px rgba(34,211,238,0.2)", opacity: "opacity-100 scale-110 brightness-110" },
+        { width: "70px", height: "125px", transform: `translate3d(100px, -60px, -200px) rotateZ(20deg) rotateX(15deg)`, borderRadius: "22px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[1px] scale-90" },
     ];
 
     const handleNext = () => {
@@ -69,21 +69,32 @@ export default function HeroSection() {
     const TXT_S_PC = "md:text-[14px] lg:text-[20px]";
 
     const [scrollPos, setScrollPos] = useState(0);
+    const [isClient, setIsClient] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        setIsClient(true);
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+
         const handleScroll = () => {
             setScrollPos(window.scrollY);
         };
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("resize", checkMobile);
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
 
     // Fade out as StyleSection image takes over
-    const heroOpacity = Math.max(1 - (scrollPos / 300), 0);
-    const heroTranslate = (scrollPos / 5);
+    const heroOpacity = isClient ? Math.max(1 - (scrollPos / 300), 0) : 1;
+    const heroTranslate = isClient ? (scrollPos / 5) : 0;
 
     return (
-        <section id="inicio" className={`${HEIGHT_FULL} flex flex-col items-center bg-[#f8f9fa] overflow-hidden pt-[80px]`}>
+        <section id="inicio" className={`${HEIGHT_FULL} flex flex-col items-center bg-[#f8f9fa] overflow-hidden pt-10 md:pt-[80px]`}>
 
             {/* PARTE SUPERIOR: HERO PRODUCTO */}
             <div className={`${HERO_HEIGHT} w-full flex flex-col items-center justify-center px-4 md:px-6 relative`}>
@@ -95,7 +106,7 @@ export default function HeroSection() {
 
                     <div className="relative group w-full md:w-1/2 flex flex-col items-center justify-center">
                         <div
-                            className="relative w-full max-w-[280px] md:max-w-none aspect-square md:min-h-[350px] flex items-center justify-center p-6 transition-all duration-300 ease-out"
+                            className="relative w-full max-w-[220px] md:max-w-none aspect-square md:min-h-[350px] flex items-center justify-center p-6 transition-all duration-300 ease-out"
                             style={{ opacity: heroOpacity, transform: `translateY(${heroTranslate}px)` }}
                         >
                             {/* Glass Card Hero con efecto flotante */}
@@ -103,12 +114,12 @@ export default function HeroSection() {
                             <img
                                 src={selection.img}
                                 alt={selection.title}
-                                className="w-[140px] sm:w-[180px] md:w-[250px] lg:w-[320px] h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-700 group-hover:scale-105 group-hover:-rotate-2 animate-[float_5s_ease-in-out_infinite]"
+                                className="w-[120px] sm:w-[150px] md:w-[250px] lg:w-[320px] h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-700 group-hover:scale-105 group-hover:-rotate-2 animate-[float_5s_ease-in-out_infinite]"
                             />
                         </div>
                     </div>
 
-                    <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-3 md:gap-5 text-center md:text-left">
+                    <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-2 md:gap-5 text-center md:text-left">
                         <h3 className="text-cyan-500 font-bold tracking-[0.4em] uppercase text-[10px] md:text-xs">Worship Premium Line</h3>
                         <div className="space-y-1">
                             <h2 className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#111] leading-[0.9] tracking-tighter">
@@ -119,9 +130,15 @@ export default function HeroSection() {
                             </p>
                         </div>
                         <div className="h-[2px] w-16 md:w-24 bg-linear-to-r from-cyan-400 to-transparent rounded-full shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
-                        <p className="text-[#111]/70 text-sm md:text-base lg:text-lg font-medium max-w-sm leading-relaxed">
+                        <p className="text-[#111]/70 text-xs md:text-base lg:text-lg font-medium max-w-sm leading-relaxed">
                             {selection.desc}
                         </p>
+
+                        {/* BOTÓN DE COMPRA PREMIUM */}
+                        <button className="group relative -mt-2 md:mt-4 px-6 py-2 md:px-8 md:py-3 rounded-full bg-[#111] text-white overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
+                            <div className="absolute inset-0 bg-linear-to-r from-cyan-400/0 via-cyan-400/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                            <span className="relative z-10 font-bold tracking-[0.2em] text-[10px] md:text-xs">COMPRAR AHORA</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -131,10 +148,10 @@ export default function HeroSection() {
                 <div className="relative w-[95%] md:w-[94%] h-full max-w-[1500px] mx-auto bg-linear-to-br from-slate-300/30 via-white/20 to-cyan-400/30 backdrop-blur-3xl rounded-[3rem] border border-white/70 shadow-[0_30px_100px_rgba(148,163,184,0.1),0_40px_100px_rgba(34,211,238,0.2)] flex items-center justify-center">
 
                     {/* LADO IZQUIERDO */}
-                    <div className="absolute left-6 md:left-[8%] lg:left-[10%] flex items-baseline gap-2 md:gap-4 z-0 pointer-events-none opacity-40">
-                        <span className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus -translate-y-4 md:-translate-y-12 text-[#111]`}>Con</span>
-                        <span className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus text-[#111]`}>un</span>
-                        <span className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus translate-y-4 md:translate-y-12 ml-1 md:ml-4 text-[#111]`}>triángulo</span>
+                    <div className="absolute left-2 md:left-[8%] lg:left-[10%] flex flex-col md:flex-row items-start md:items-baseline gap-2 md:gap-4 z-0 pointer-events-none opacity-40 md:translate-y-0">
+                        <span className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus md:-translate-y-12 text-[#111] leading-none tracking-tight transition-transform duration-700 ${isClient && isMobile ? 'translate-x-[0px] -translate-y-4' : ''}`}>Con</span>
+                        <span className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus text-[#111] leading-none tracking-tight transition-transform duration-700 ${isClient && isMobile ? 'translate-x-[15px]' : ''}`}>un</span>
+                        <span className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus md:translate-y-12 text-[#111] leading-none tracking-tighter transition-transform duration-700 ${isClient && isMobile ? 'translate-x-[45px] translate-y-8' : ''}`}>triángulo</span>
                     </div>
 
                     {/* NÚCLEO CENTRAL */}
@@ -166,10 +183,10 @@ export default function HeroSection() {
                     </div>
 
                     {/* LADO DERECHO */}
-                    <div className="absolute right-6 md:right-[8%] lg:right-[10%] flex items-baseline gap-2 md:gap-4 z-0 pointer-events-none opacity-40">
-                        <span className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus translate-y-4 md:translate-y-12 mr-1 md:mr-4 text-[#111]`}>in</span>
-                        <span className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus text-[#111]`}>the</span>
-                        <span className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus -translate-y-4 md:-translate-y-12 text-[#111]`}>faces</span>
+                    <div className="absolute right-2 md:right-[8%] lg:right-[10%] flex flex-col md:flex-row items-end md:items-baseline gap-2 md:gap-4 z-0 pointer-events-none opacity-40 md:translate-y-0 text-right md:text-left">
+                        <span className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus md:translate-y-12 text-[#111] leading-none tracking-tighter transition-transform duration-700 ${isClient && isMobile ? '-translate-x-[20px] -translate-y-2' : ''}`}>in</span>
+                        <span className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus text-[#111] leading-none tracking-tight transition-transform duration-700 ${isClient && isMobile ? '-translate-x-[50px]' : ''}`}>the</span>
+                        <span className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus md:-translate-y-12 text-[#111] leading-none tracking-tight transition-transform duration-700 ${isClient && isMobile ? '-translate-x-[90px] translate-y-8' : ''}`}>faces</span>
                     </div>
                 </div>
             </div>
