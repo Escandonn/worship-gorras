@@ -6,7 +6,7 @@ export default function HeroSection() {
     // --- CONFIGURACIÓN DE TAMAÑO / HEIGHT CONFIG ---
     const HEIGHT_FULL = "h-screen";
     const HERO_HEIGHT = "h-[63vh] md:h-[65vh]";
-    const PANEL_HEIGHT = "h-[22vh] md:h-[20vh]";
+    const PANEL_HEIGHT = "h-[20vh] md:h-[20vh]";
     // -----------------------------------------------
 
     const selection = useStore($capSelection);
