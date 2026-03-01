@@ -58,7 +58,7 @@ export default function BottomSection() {
     <section
       id="contacto"
       ref={sectionRef}
-      className="h-screen flex items-center justify-center bg-[#0a0a0a] overflow-hidden px-6 relative"
+      className="h-screen md:h-[130vh] flex items-center justify-center bg-[#0a0a0a] overflow-hidden px-6 relative"
     >
       {/* ATMOSPHERIC BACKGROUND (MESH GRADIENT STYLE) */}
       <div className={`absolute inset-0 z-0 transition-opacity duration-[2000ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
