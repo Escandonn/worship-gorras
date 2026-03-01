@@ -14,31 +14,6 @@ export default function HeroSection() {
     const [shift, setShift] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
 
-    // --- CAROUSEL DATA ---
-    const cards = [
-        {
-            id: 1,
-            img: "/assets/im2.png",
-            title: "Stability Pro",
-            subtitle: "Rendimiento Avanzado",
-            desc: "Estructura reforzada con paneles de micromalla para una ventilación superior y un ajuste ergonómico incomparable."
-        },
-        {
-            id: 2,
-            img: "/assets/adan.png",
-            title: "Legacy Black",
-            subtitle: "Esencia Atemporal",
-            desc: "Sarga de algodón peinado de alta densidad con un acabado mate profundo. El estándar de oro en elegancia urbana."
-        },
-        {
-            id: 3,
-            img: "/assets/img.png",
-            title: "Zenith Silver",
-            subtitle: "Futurismo Urbano",
-            desc: "Tejido técnico con microfibras reflectantes y silueta aerodinámica. Diseñada para quienes miran hacia el futuro."
-        },
-    ];
-
     const positions = [
         { width: "70px", height: "125px", transform: `translate3d(-100px, -110px, -200px) rotateZ(-20deg) rotateX(15deg)`, borderRadius: "18px", border: "1px solid rgba(255,255,255,.15)", boxShadow: "0 8px 15px rgba(0,0,0,.2)", opacity: "opacity-40 blur-[1px] scale-90" },
         { width: "80px", height: "110px", transform: `translate3d(0px, -100px, 50px) rotateZ(0deg) rotateX(15deg)`, borderRadius: "14px", border: "1px solid rgba(255,255,255,.7)", boxShadow: "0 20px 40px rgba(0,0,0,.3), 0 0 20px rgba(34,211,238,0.2)", opacity: "opacity-100 scale-110 brightness-110" },
@@ -49,6 +24,7 @@ export default function HeroSection() {
         setShift((prev) => {
             const newShift = (prev + 1) % 3;
             const frontCardIndex = (1 - newShift + 3) % 3;
+            // USAR LA CONSTANTE 'cards' IMPORTADA DEL STORE
             const frontCard = cards[frontCardIndex];
 
             setIsAnimating(true);
@@ -147,11 +123,17 @@ export default function HeroSection() {
             <div className={`${PANEL_HEIGHT} w-full flex items-center justify-center relative`}>
                 <div className="relative w-[95%] md:w-[94%] h-full max-w-[1500px] mx-auto bg-linear-to-br from-slate-300/30 via-white/20 to-cyan-400/30 backdrop-blur-3xl rounded-[3rem] border border-white/70 shadow-[0_30px_100px_rgba(148,163,184,0.1),0_40px_100px_rgba(34,211,238,0.2)] flex items-center justify-center">
 
-                    {/* LADO IZQUIERDO */}
+                    {/* LADO IZQUIERDO DINÁMICO */}
                     <div className="absolute left-2 md:left-[8%] lg:left-[10%] flex flex-col md:flex-row items-start md:items-baseline gap-2 md:gap-4 z-0 pointer-events-none opacity-40 md:translate-y-0">
-                        <span className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus md:-translate-y-12 text-[#111] leading-none tracking-tight transition-transform duration-700 ${isClient && isMobile ? 'translate-x-[0px] -translate-y-4' : ''}`}>Con</span>
-                        <span className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus text-[#111] leading-none tracking-tight transition-transform duration-700 ${isClient && isMobile ? 'translate-x-[15px]' : ''}`}>un</span>
-                        <span className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus md:translate-y-12 text-[#111] leading-none tracking-tighter transition-transform duration-700 ${isClient && isMobile ? 'translate-x-[45px] translate-y-8' : ''}`}>triángulo</span>
+                        <span className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus md:-translate-y-12 text-[#111] leading-none tracking-tight transition-all duration-700 ${isClient && isMobile ? 'translate-x-0 -translate-y-4' : ''}`}>
+                            {selection.heroLeft[0]}
+                        </span>
+                        <span className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus text-[#111] leading-none tracking-tight transition-all duration-700 ${isClient && isMobile ? 'translate-x-[15px]' : ''}`}>
+                            {selection.heroLeft[1]}
+                        </span>
+                        <span className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus md:translate-y-12 text-[#111] leading-none tracking-tighter transition-all duration-700 ${isClient && isMobile ? 'translate-x-[45px] translate-y-8' : ''}`}>
+                            {selection.heroLeft[2]}
+                        </span>
                     </div>
 
                     {/* NÚCLEO CENTRAL */}
@@ -182,11 +164,17 @@ export default function HeroSection() {
                         </button>
                     </div>
 
-                    {/* LADO DERECHO */}
+                    {/* LADO DERECHO DINÁMICO */}
                     <div className="absolute right-2 md:right-[8%] lg:right-[10%] flex flex-col md:flex-row items-end md:items-baseline gap-2 md:gap-4 z-0 pointer-events-none opacity-40 md:translate-y-0 text-right md:text-left">
-                        <span className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus md:translate-y-12 text-[#111] leading-none tracking-tighter transition-transform duration-700 ${isClient && isMobile ? '-translate-x-[20px] -translate-y-2' : ''}`}>in</span>
-                        <span className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus text-[#111] leading-none tracking-tight transition-transform duration-700 ${isClient && isMobile ? '-translate-x-[50px]' : ''}`}>the</span>
-                        <span className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus md:-translate-y-12 text-[#111] leading-none tracking-tight transition-transform duration-700 ${isClient && isMobile ? '-translate-x-[90px] translate-y-8' : ''}`}>faces</span>
+                        <span className={`font-['Playfair_Display'] ${TXT_L_MOB} ${TXT_L_PC} font-black animate-word-focus md:translate-y-12 text-[#111] leading-none tracking-tighter transition-all duration-700 ${isClient && isMobile ? '-translate-x-[20px] -translate-y-2' : ''}`}>
+                            {selection.heroRight[0]}
+                        </span>
+                        <span className={`font-['Playfair_Display'] ${TXT_S_MOB} ${TXT_S_PC} font-bold animate-word-focus text-[#111] leading-none tracking-tight transition-all duration-700 ${isClient && isMobile ? '-translate-x-[50px]' : ''}`}>
+                            {selection.heroRight[1]}
+                        </span>
+                        <span className={`font-['Playfair_Display'] ${TXT_M_MOB} ${TXT_M_PC} font-black animate-word-focus md:-translate-y-12 text-[#111] leading-none tracking-tight transition-all duration-700 ${isClient && isMobile ? '-translate-x-[90px] translate-y-8' : ''}`}>
+                            {selection.heroRight[2]}
+                        </span>
                     </div>
                 </div>
             </div>

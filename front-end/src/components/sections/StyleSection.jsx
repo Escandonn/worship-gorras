@@ -59,10 +59,12 @@ export default function StyleSection() {
             ref={sectionRef}
             className="h-[115vh] md:h-[140vh] flex items-center justify-center bg-[#f8f9fa] overflow-hidden px-6 relative"
         >
-            {/* BACKGROUND ELEMENTS */}
+            {/* BACKGROUND ELEMENTS DYNAMIC */}
             <div className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-cyan-400/10 blur-[150px] rounded-full" />
-                <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] bg-fuchsia-400/10 blur-[150px] rounded-full" />
+                <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] blur-[150px] rounded-full transition-all duration-1000"
+                    style={{ backgroundColor: `${selection.accent}22` }} />
+                <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] blur-[150px] rounded-full transition-all duration-1000"
+                    style={{ backgroundColor: `${selection.accent}22` }} />
             </div>
 
             {/* MAIN CONTENT CONTAINER */}
@@ -82,7 +84,8 @@ export default function StyleSection() {
                     >
                         {/* Multiple glass layers for depth */}
                         <div className="absolute inset-0 bg-white/30 backdrop-blur-2xl rounded-full border border-white/50 shadow-[0_60px_120px_-30px_rgba(0,0,0,0.2)] -z-10" />
-                        <div className="absolute inset-10 bg-linear-to-br from-cyan-400/20 to-transparent rounded-full -z-10" />
+                        <div className="absolute inset-10 rounded-full -z-10 transition-all duration-1000"
+                            style={{ background: `radial-gradient(circle, ${selection.glow}, transparent)` }} />
 
                         <img
                             src={selection.img}
@@ -94,21 +97,23 @@ export default function StyleSection() {
 
                 {/* TEXT CONTENT */}
                 <div className="text-center space-y-4 md:space-y-6 max-w-4xl px-4">
-                    <h3 className={`text-cyan-500 font-bold tracking-[0.6em] uppercase text-[10px] md:text-sm transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 tracking-[0.8em]' : 'opacity-0 tracking-[0.2em]'}`}>
-                        Aesthetic Excellence
+                    <h3 className={`font-bold tracking-[0.6em] uppercase text-[10px] md:text-sm transition-all duration-700 delay-500 transition-colors duration-1000 ${isVisible ? 'opacity-100 tracking-[0.8em]' : 'opacity-0 tracking-[0.2em]'}`}
+                        style={{ color: selection.accent }}>
+                        {selection.styleTitle}
                     </h3>
 
                     <h2 className={`font-['Playfair_Display'] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#111] leading-[0.85] tracking-tighter transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        EL ARTE DEL <br />
-                        <span className="relative inline-block text-transparent bg-clip-text bg-linear-to-r from-cyan-500 via-fuchsia-500 to-cyan-500 animate-text-shimmer">
-                            DETALLE
+                        {selection.styleHeadline} <br />
+                        <span className={`relative inline-block text-transparent bg-clip-text bg-linear-to-r ${selection.gradient} animate-text-shimmer transition-all duration-1000`}>
+                            {selection.styleHighlight}
                         </span>
                     </h2>
 
-                    <div className={`h-[2px] w-24 md:w-48 mx-auto bg-linear-to-r from-transparent via-fuchsia-500 to-transparent rounded-full shadow-[0_0_20px_rgba(217,70,239,0.6)] transition-all duration-1000 delay-800 ${isVisible ? 'w-48 opacity-100' : 'w-0 opacity-0'}`} />
+                    <div className={`h-[2px] mx-auto rounded-full transition-all duration-1000 delay-800 ${isVisible ? 'w-48 opacity-100' : 'w-0 opacity-0'}`}
+                        style={{ backgroundImage: `linear-gradient(to right, transparent, ${selection.accent}, transparent)`, boxShadow: `0 0 20px ${selection.glow}` }} />
 
                     <p className={`text-[#111]/70 text-base md:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                        Fusionamos la elegancia del renacimiento con la rebeldía del streetwear moderno. Cada puntada es una oda a la perfección visual y táctil.
+                        {selection.styleDesc}
                     </p>
 
                     <div className={`pt-6 md:pt-10 transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
