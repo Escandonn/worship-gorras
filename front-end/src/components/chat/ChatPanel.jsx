@@ -2,9 +2,16 @@ import { useState, useRef, useEffect } from "react";
 import { sendMessage } from "../../services/chatApi";
 
 export default function ChatPanel({ isOpen, onClose }) {
-    const [messages, setMessages] = useState([
-        { id: 1, text: "Bienvenido a Worship Elite Support. ¿En qué podemos ayudarte hoy?", sender: "bot" }
-    ]);
+    const [messages, setMessages] = useState(() => {
+        // Load from localStorage on init
+        if (typeof window !== "undefined") {
+            const saved = localStorage.getItem("worship_chat_history");
+            return saved ? JSON.parse(saved) : [
+                { id: 1, text: "Bienvenido a Worship Elite Support. ¿En qué podemos ayudarte hoy?", sender: "bot" }
+            ];
+        }
+        return [{ id: 1, text: "Bienvenido a Worship Elite Support. ¿En qué podemos ayudarte hoy?", sender: "bot" }];
+    });
     const [inputValue, setInputValue] = useState("");
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef(null);
@@ -14,6 +21,11 @@ export default function ChatPanel({ isOpen, onClose }) {
     };
 
     useEffect(() => {
+        // Save to localStorage, limit to last 15 messages
+        if (typeof window !== "undefined") {
+            const historyToSave = messages.slice(-15);
+            localStorage.setItem("worship_chat_history", JSON.stringify(historyToSave));
+        }
         if (isOpen) scrollToBottom();
     }, [messages, isOpen]);
 
@@ -21,15 +33,17 @@ export default function ChatPanel({ isOpen, onClose }) {
         if (!inputValue.trim()) return;
 
         const userMsg = { id: Date.now(), text: inputValue, sender: "user" };
-        setMessages(prev => [...prev, userMsg]);
+        const newMessages = [...messages, userMsg];
+        setMessages(newMessages);
         setInputValue("");
         setIsTyping(true);
 
         try {
-            const response = await sendMessage(inputValue);
+            // Pass the context (previous messages)
+            const response = await sendMessage(inputValue, messages.slice(-14)); // -14 to leave room for the new message
             setMessages(prev => [...prev, { id: Date.now() + 1, text: response.text, sender: "bot" }]);
         } catch (error) {
-            setMessages(prev => [...prev, { id: Date.now() + 1, text: "Lo siento, hubo un error de conexión.", sender: "bot" }]);
+            setMessages(prev => [...prev, { id: Date.now() + 1, text: "Lo siento, hubo un error de conexión con mi cerebro artificial.", sender: "bot" }]);
         } finally {
             setIsTyping(false);
         }

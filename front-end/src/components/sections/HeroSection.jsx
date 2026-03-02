@@ -157,9 +157,9 @@ export default function HeroSection() {
 
                         <button
                             onClick={handleNext}
-                            className="group relative z-30 px-7 py-3 md:px-[38px] md:py-[12px] rounded-full border border-white/50 bg-white/80 font-['Playfair_Display'] font-black tracking-[0.3em] text-[12px] text-[#111] shadow-2xl transition-all duration-300 hover:scale-105 hover:tracking-[0.45em] hover:bg-white hover:shadow-[0_0_30px_rgba(34,211,238,0.4)] active:scale-95 overflow-hidden"
+                            className="group relative z-30 px-7 py-3 md:px-[38px] md:py-[12px] rounded-full border border-white/50 bg-white/80 font-['Playfair_Display'] font-black tracking-[0.3em] text-[12px] text-[#111] shadow-2xl transition-all duration-300 hover:scale-105 hover:tracking-[0.45em] hover:bg-white hover:shadow-[0_0_30px_rgba(34,211,238,0.4)] active:scale-95 overflow-hidden animate-btnPulse"
                         >
-                            <span className="relative z-10">WORSHIP</span>
+                            <span className="relative z-10">PRESIONA</span>
                             <div className="absolute inset-0 bg-linear-to-r from-transparent via-cyan-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                         </button>
                     </div>

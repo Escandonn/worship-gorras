@@ -114,6 +114,10 @@ body {
   }
 }
 
+.animate-btnPulse {
+  animation: btnPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 @keyframes colorCycle {
 
   0%,
@@ -229,8 +233,15 @@ body {
 }
 
 @keyframes pop {
-  0% { transform: scale(0.95); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .animate-pop {
