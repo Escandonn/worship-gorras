@@ -1,15 +1,17 @@
 ---
 import "../styles/global.css";
+import ChatContainer from "../components/chat/ChatContainer.jsx";
 ---
 
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Apple Glass Layout</title>
+    <title>Worship Caps - Elite Collection</title>
   </head>
 
   <body>
     <slot />
+    <ChatContainer client:load />
   </body>
 </html>
